@@ -1,7 +1,15 @@
-(ns lambada.core)
-
-(require '[clojure.data.csv :as csv]
-         '[clojure.java.io :as io])
+(ns lambada.core 
+  "Contributors:
+Gary Fredericks
+Denny Abraham
+Joseph Jackson
+Michael Harrison
+Darren Ng
+Devin Walters
+Philip Corliss
+"
+  (:require [clojure.data.csv :as csv]
+            [clojure.java.io :as io]))
 
 (defn read-data
   "Read in data"
@@ -16,6 +24,8 @@
   (for [line (rest (read-data filename))]
     (for [element line]
       (Long/parseLong element))))
+
+(def training-set (parse-data "digitssample.csv"))
 
 (defn diff-squared
   "Finds the difference between numbers and squares it"
@@ -38,5 +48,3 @@
   []
   (let [check-set (parse-data "digitscheck.csv")]
     (pmap #(= (first %) (classifier (rest %))) check-set)))
-
-(def training-set (parse-data "digitssample.csv"))
