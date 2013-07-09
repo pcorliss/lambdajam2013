@@ -1,13 +1,12 @@
-(ns lambada.core 
+(ns lambada.core
   "Contributors:
-Gary Fredericks
-Denny Abraham
-Joseph Jackson
-Michael Harrison
-Darren Ng
-Devin Walters
-Philip Corliss
-"
+   Gary Fredericks
+   Denny Abraham
+   Joseph Jackson
+   Michael Harrison
+   Darren Ng
+   Devin Walters
+   Philip Corliss"
   (:require [clojure.data.csv :as csv]
             [clojure.java.io :as io]))
 
@@ -35,13 +34,13 @@ Philip Corliss
 (defn compare-grid
   "Compares two number grids and returns the RMS"
   [grid1 grid2]
-  (. Math sqrt (/ (apply + (map diff-squared grid1 grid2)) 784)))
+  (Math/sqrt (/ (apply + (map diff-squared grid1 grid2)) 784)))
 
 (defn classifier
   "Classifies using RMS between all samples"
   [unknown-grid]
-    (first 
-      (apply min-key #(compare-grid unknown-grid (rest %)) training-set)))
+  (first
+   (apply min-key #(compare-grid unknown-grid (rest %)) training-set)))
 
 (defn classify-all
   "Read in CSV and classify all numbers"
