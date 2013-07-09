@@ -37,18 +37,6 @@
   "Read in CSV and classify all numbers"
   []
   (let [check-set (parse-data "digitscheck.csv")]
-    (map #(= (first %) (classifier (rest %))) check-set)))
-
-;(defn correct
-  ;"Count the number of correct entries"
-  ;[]
-  ;(let [check-set (parse-data "digitscheck.csv")]
-    
-    ;))
+    (pmap #(= (first %) (classifier (rest %))) check-set)))
 
 (def training-set (parse-data "digitssample.csv"))
-
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
