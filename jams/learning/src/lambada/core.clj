@@ -37,14 +37,14 @@
   "Read in CSV and classify all numbers"
   []
   (let [check-set (parse-data "digitscheck.csv")]
-    (map #(classifier (rest %)) check-set)))
+    (map #(= (first %) (classifier (rest %))) check-set)))
 
-(defn correct
-  "Count the number of correct entries"
-  []
-  (let [check-set (parse-data "digitscheck.csv")])
-
-)
+;(defn correct
+  ;"Count the number of correct entries"
+  ;[]
+  ;(let [check-set (parse-data "digitscheck.csv")]
+    
+    ;))
 
 (def training-set (parse-data "digitssample.csv"))
 
