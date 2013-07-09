@@ -12,8 +12,8 @@
 
 (defn parse-data
   "Parse the data"
-  []
-  (for [line (rest (read-data "digitscheck.csv"))]
+  [filename]
+  (for [line (rest (read-data filename))]
     (for [element line]
       (Long/parseLong element))))
 
@@ -26,6 +26,27 @@
   "Compares two number grids and returns the RMS"
   [grid1 grid2]
   (. Math sqrt (/ (apply + (map diff-squared grid1 grid2)) 784)))
+
+(defn classifier
+  "Classifies using RMS between all samples"
+  [unknown-grid]
+    (first 
+      (apply min-key #(compare-grid unknown-grid (rest %)) training-set)))
+
+(defn classify-all
+  "Read in CSV and classify all numbers"
+  []
+  (let [check-set (parse-data "digitscheck.csv")]
+    (map #(classifier (rest %)) check-set)))
+
+(defn correct
+  "Count the number of correct entries"
+  []
+  (let [check-set (parse-data "digitscheck.csv")])
+
+)
+
+(def training-set (parse-data "digitssample.csv"))
 
 (defn foo
   "I don't do a whole lot."
