@@ -8,7 +8,14 @@
   [filename]
   (with-open [in-file (io/reader filename)]
     (doall
-      (csv/read-csv in-file :separator \|))))
+      (csv/read-csv in-file :separator \,))))
+
+(defn parse-data
+  "Parse the data"
+  []
+  (for [line (rest (read-data "digitscheck.csv"))]
+    (for [element line]
+      (Long/parseLong element))))
 
 (defn foo
   "I don't do a whole lot."
