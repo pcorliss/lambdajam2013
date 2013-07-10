@@ -80,13 +80,11 @@
 (defn generate
   "Generate a grid of specified size and carve out a maze"
   [width height strategy]
-  ;(json/write-str (empty-array height (empty-array width 0))))
   (let [grid (empty-vec height (empty-vec width 0))
-        carved []]
+        carved [(random-cell grid [])]]
     (first
       (drop-while #(not (empty? (:carved %)))
-        (rest
-          (iterate carve-grid {:grid grid :carved carved}))))))
+        (iterate carve-grid {:grid grid :carved carved})))))
 
 (defn print-maze
   "Prints out a JSON compatible maze"
