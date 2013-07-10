@@ -87,3 +87,8 @@
       (drop-while #(not (empty? (:carved %)))
         (rest
           (iterate carve-grid {:grid grid :carved carved}))))))
+
+(defn print-maze
+  "Prints out a JSON compatible maze"
+  [width height]
+  (println (json/write-str (:grid (generate width height :default)))))
