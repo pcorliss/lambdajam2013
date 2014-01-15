@@ -124,4 +124,4 @@
 
 (defn -main
   [& args]
-  (print-maze 19 19 :none))
+  (print-maze 33 19 :none))
